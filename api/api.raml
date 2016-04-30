@@ -1,0 +1,49 @@
+#%RAML 1.0
+title: Mooolelo API
+version: v1
+baseUri: http://localhost:8000
+/services :
+  get:
+    description: Fetch all registered services
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include schemas/list-all.schema
+            example: !include examples/list-services.sample
+  post:
+    description: Register new service in Mooolelo
+    responses:
+      201:
+        body:
+          application/json:
+  /{serviceType}:
+    get:
+      description: Fetch all services of serviceType
+      responses:
+        200:
+          body:
+            application/json:
+        404:
+    /{serviceGroup}:
+      get:
+        description: Fetch all services of serviceType in serviceGroup
+        responses:
+          200:
+            body:
+              application/json:
+          404:
+      /{serviceId}:
+        get:
+          description: Fetch service by serviceId
+          responses:
+            200:
+              body:
+                application/json:
+            404:
+        post:
+        delete:
+          description: Delete service from registry
+          responses:
+            200:
+            404:

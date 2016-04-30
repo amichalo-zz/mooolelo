@@ -1,0 +1,31 @@
+[
+  {
+    "name": "serviceType",
+    "services": [
+      {
+        "id": 1,
+        "serviceType": "serviceType",
+        "serviceGroup": "serviceGroup",
+        "hostname": "localhost",
+        "health": {
+          "isHealth": true
+        }
+      }
+    ]
+  },
+  {
+    "name": "serviceType",
+    "services": [
+      {
+        "id": 2,
+        "serviceType": "serviceType2",
+        "serviceGroup": "serviceGroup2",
+        "hostname": "localhost",
+        "health": {
+          "isHealth": false,
+          "reason": "random"
+        }
+      }
+    ]
+  }
+]
