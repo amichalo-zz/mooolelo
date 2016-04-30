@@ -18,6 +18,8 @@ package object domain {
 
   case class Port(value: Int) extends AnyVal
 
+  case class Environment(value: String) extends AnyVal
+
   case class ServiceVersion(value: String) extends AnyVal
 
   case class WorkingDirectory(path: String) extends AnyVal
@@ -28,26 +30,28 @@ package object domain {
 
   case class HealthStatus(isHealthy: Boolean, reason: Option[String])
 
-  case class BaseServiceDefinition(id: ServiceId, serviceType: ServiceType, serviceGroup: ServiceGroup, hostname: Hostname, health: HealthStatus)
+  case class BaseServiceDefinition(id: ServiceId, serviceType: ServiceType, serviceGroup: ServiceGroup, environment: Environment, hostname: Hostname, health: HealthStatus)
   object BaseServiceDefinition {
     def apply(entity: ServiceEntity): BaseServiceDefinition = {
       BaseServiceDefinition(
         id = entity.id,
         serviceType = entity.serviceType,
         serviceGroup = entity.group,
+        environment = entity.environment,
         hostname = entity.hostname,
         health = entity.health
       )
     }
   }
 
-  case class ServiceDefinition(id: ServiceId, serviceType: ServiceType, serviceGroup: ServiceGroup, hostname: Hostname, ip: IP, port: Option[Port], version: Option[ServiceVersion], health: HealthStatus)
+  case class ServiceDefinition(id: ServiceId, serviceType: ServiceType, serviceGroup: ServiceGroup, environment: Environment, hostname: Hostname, ip: IP, port: Option[Port], version: Option[ServiceVersion], health: HealthStatus)
   object ServiceDefinition {
     def apply(entity: ServiceEntity): ServiceDefinition = {
       ServiceDefinition(
         id = entity.id,
         serviceType = entity.serviceType,
         serviceGroup = entity.group,
+        environment = entity.environment,
         hostname = entity.hostname,
         ip = entity.ip,
         port = entity.port,
@@ -57,7 +61,7 @@ package object domain {
     }
   }
 
-  case class RichServiceDefinition(id: ServiceId, serviceType: ServiceType, serviceGroup: ServiceGroup, hostname: Hostname, ip: IP, port: Option[Port], version: Option[ServiceVersion], state: HealthStatus,
+  case class RichServiceDefinition(id: ServiceId, serviceType: ServiceType, serviceGroup: ServiceGroup, environment: Environment, hostname: Hostname, ip: IP, port: Option[Port], version: Option[ServiceVersion], state: HealthStatus,
                                    jvmSettings: Option[StartupArguments], config: Option[Map[String, String]], workingDirectory: Option[WorkingDirectory], registrationTimestamp: DateTime, lastHeartbeat: DateTime)
   object RichServiceDefinition {
     def apply(entity: ServiceEntity): RichServiceDefinition = {
@@ -65,6 +69,7 @@ package object domain {
         id = entity.id,
         serviceType = entity.serviceType,
         serviceGroup = entity.group,
+        environment = entity.environment,
         hostname = entity.hostname,
         ip = entity.ip,
         port = entity.port,

@@ -96,6 +96,7 @@ object RegistryService {
                                   id: ServiceId,
                                   serviceType: ServiceType,
                                   group: ServiceGroup,
+                                  environment: Environment,
                                   hostname: Hostname,
                                   ip: IP,
                                   port: Option[Port],
