@@ -10,7 +10,10 @@ Although this project is being used in production environment it's still in a ve
 
 ### Clients
 
-I am working on clients in Scala and Python. If you would like to start working on a client in your favourite language please drop me a message.
+Currently supported clients:
+- [Scala](https://github.com/amichalo/smooolelo)
+
+If you would like to start working on a client in your favourite language please drop me a message.
 
 ### Requirements
 
